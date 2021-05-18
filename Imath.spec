@@ -4,7 +4,7 @@
 #
 Name     : Imath
 Version  : v3.0.2
-Release  : 3
+Release  : 4
 URL      : https://github.com/AcademySoftwareFoundation/Imath/archive/refs/tags/v3.0.2.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/Imath/archive/refs/tags/v3.0.2.tar.gz
 Summary  : Python bindings for the Imath libraries
@@ -60,17 +60,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1621357282
+export SOURCE_DATE_EPOCH=1621357718
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 %cmake ..
 make  %{?_smp_mflags}
 popd
@@ -80,10 +80,10 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -march=haswell "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -march=haswell "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -march=haswell "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -march=haswell "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
+export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
+export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=haswell "
 export CFLAGS="$CFLAGS -march=haswell -m64"
 export CXXFLAGS="$CXXFLAGS -march=haswell -m64"
 export FFLAGS="$FFLAGS -march=haswell -m64"
@@ -97,10 +97,10 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -march=skylake-avx512 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -march=skylake-avx512 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -march=skylake-avx512 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -march=skylake-avx512 "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
+export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
+export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -march=skylake-avx512 "
 export CFLAGS="$CFLAGS -march=skylake-avx512 -m64 "
 export CXXFLAGS="$CXXFLAGS -march=skylake-avx512 -m64 "
 export FFLAGS="$FFLAGS -march=skylake-avx512 -m64 "
@@ -121,7 +121,7 @@ cd ../clr-build-avx512;
 make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1621357282
+export SOURCE_DATE_EPOCH=1621357718
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Imath
 cp %{_builddir}/Imath-3.0.2/LICENSE.md %{buildroot}/usr/share/package-licenses/Imath/ce40fed41edcb2473538bb84f85ff79e585760b5
