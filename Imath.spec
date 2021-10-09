@@ -4,12 +4,13 @@
 #
 Name     : Imath
 Version  : 3.1.1
-Release  : 9
+Release  : 10
 URL      : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.1/Imath-3.1.1.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.1/Imath-3.1.1.tar.gz
 Summary  : Python bindings for the Imath libraries
 Group    : Development/Tools
 License  : BSD-3-Clause
+Requires: Imath-filemap = %{version}-%{release}
 Requires: Imath-lib = %{version}-%{release}
 Requires: Imath-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
@@ -34,10 +35,19 @@ Requires: Imath = %{version}-%{release}
 dev components for the Imath package.
 
 
+%package filemap
+Summary: filemap components for the Imath package.
+Group: Default
+
+%description filemap
+filemap components for the Imath package.
+
+
 %package lib
 Summary: lib components for the Imath package.
 Group: Libraries
 Requires: Imath-license = %{version}-%{release}
+Requires: Imath-filemap = %{version}-%{release}
 
 %description lib
 lib components for the Imath package.
@@ -60,7 +70,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1626877806
+export SOURCE_DATE_EPOCH=1633755085
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -80,14 +90,14 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=haswell -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=haswell -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=haswell -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=haswell -mprefer-vector-width=256 "
-export CFLAGS="$CFLAGS -march=haswell -m64"
-export CXXFLAGS="$CXXFLAGS -march=haswell -m64"
-export FFLAGS="$FFLAGS -march=haswell -m64"
-export FCFLAGS="$FCFLAGS -march=haswell -m64"
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86-64-v3 -mprefer-vector-width=256 -mtune=skylake "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64"
 %cmake ..
 make  %{?_smp_mflags}
 popd
@@ -97,14 +107,14 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=skylake-avx512 -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=skylake-avx512 -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=skylake-avx512 -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=skylake-avx512 -mprefer-vector-width=256 "
-export CFLAGS="$CFLAGS -march=skylake-avx512 -m64 "
-export CXXFLAGS="$CXXFLAGS -march=skylake-avx512 -m64 "
-export FFLAGS="$FFLAGS -march=skylake-avx512 -m64 "
-export FCFLAGS="$FCFLAGS -march=skylake-avx512 -m64 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -march=x86_64-v4 -mprefer-vector-width=256 -mtune=skylake "
+export CFLAGS="$CFLAGS -march=x86-64-v4 -m64 "
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v4 -m64 "
+export FFLAGS="$FFLAGS -march=x86-64-v4 -m64 "
+export FCFLAGS="$FCFLAGS -march=x86-64-v4 -m64 "
 %cmake ..
 make  %{?_smp_mflags}
 popd
@@ -121,15 +131,17 @@ cd ../clr-build-avx512;
 make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1626877806
+export SOURCE_DATE_EPOCH=1633755085
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Imath
 cp %{_builddir}/Imath-3.1.1/LICENSE.md %{buildroot}/usr/share/package-licenses/Imath/ce40fed41edcb2473538bb84f85ff79e585760b5
-pushd clr-build-avx512
-%make_install_avx512  || :
-popd
 pushd clr-build-avx2
-%make_install_avx2  || :
+%make_install_v3  || :
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+popd
+pushd clr-build-avx512
+%make_install_v4  || :
+/usr/bin/elf-move.py avx512 %{buildroot}-v4 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 popd
 pushd clr-build
 %make_install
@@ -179,22 +191,19 @@ popd
 /usr/lib64/cmake/Imath/ImathConfigVersion.cmake
 /usr/lib64/cmake/Imath/ImathTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/Imath/ImathTargets.cmake
-/usr/lib64/haswell/avx512_1/libImath-3_1.so
-/usr/lib64/haswell/avx512_1/libImath.so
-/usr/lib64/haswell/libImath-3_1.so
-/usr/lib64/haswell/libImath.so
 /usr/lib64/libImath-3_1.so
 /usr/lib64/libImath.so
 /usr/lib64/pkgconfig/Imath.pc
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-Imath
+
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/haswell/avx512_1/libImath-3_1.so.29
-/usr/lib64/haswell/avx512_1/libImath-3_1.so.29.1.0
-/usr/lib64/haswell/libImath-3_1.so.29
-/usr/lib64/haswell/libImath-3_1.so.29.1.0
 /usr/lib64/libImath-3_1.so.29
 /usr/lib64/libImath-3_1.so.29.1.0
+/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
