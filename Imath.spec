@@ -4,13 +4,12 @@
 #
 Name     : Imath
 Version  : 3.1.5
-Release  : 12
+Release  : 13
 URL      : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.5/Imath-3.1.5.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.5/Imath-3.1.5.tar.gz
 Summary  : Python bindings for the Imath libraries
 Group    : Development/Tools
 License  : BSD-3-Clause
-Requires: Imath-filemap = %{version}-%{release}
 Requires: Imath-lib = %{version}-%{release}
 Requires: Imath-license = %{version}-%{release}
 BuildRequires : Imath-dev
@@ -36,19 +35,10 @@ Requires: Imath = %{version}-%{release}
 dev components for the Imath package.
 
 
-%package filemap
-Summary: filemap components for the Imath package.
-Group: Default
-
-%description filemap
-filemap components for the Imath package.
-
-
 %package lib
 Summary: lib components for the Imath package.
 Group: Libraries
 Requires: Imath-license = %{version}-%{release}
-Requires: Imath-filemap = %{version}-%{release}
 
 %description lib
 lib components for the Imath package.
@@ -71,7 +61,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1654716401
+export SOURCE_DATE_EPOCH=1656044291
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -132,7 +122,7 @@ cd ../clr-build-avx512;
 make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1654716401
+export SOURCE_DATE_EPOCH=1656044291
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Imath
 cp %{_builddir}/Imath-3.1.5/LICENSE.md %{buildroot}/usr/share/package-licenses/Imath/ce40fed41edcb2473538bb84f85ff79e585760b5
@@ -145,8 +135,8 @@ popd
 pushd clr-build
 %make_install
 popd
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
-/usr/bin/elf-move.py avx512 %{buildroot}-v4 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx512 %{buildroot}-v4 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -196,15 +186,18 @@ popd
 /usr/lib64/libImath.so
 /usr/lib64/pkgconfig/Imath.pc
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-Imath
-
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libImath-3_1.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libImath-3_1.so.29
+/usr/lib64/glibc-hwcaps/x86-64-v3/libImath-3_1.so.29.4.0
+/usr/lib64/glibc-hwcaps/x86-64-v3/libImath.so
+/usr/lib64/glibc-hwcaps/x86-64-v4/libImath-3_1.so
+/usr/lib64/glibc-hwcaps/x86-64-v4/libImath-3_1.so.29
+/usr/lib64/glibc-hwcaps/x86-64-v4/libImath-3_1.so.29.4.0
+/usr/lib64/glibc-hwcaps/x86-64-v4/libImath.so
 /usr/lib64/libImath-3_1.so.29
 /usr/lib64/libImath-3_1.so.29.4.0
-/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
