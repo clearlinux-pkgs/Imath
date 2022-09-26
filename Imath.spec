@@ -4,7 +4,7 @@
 #
 Name     : Imath
 Version  : 3.1.5
-Release  : 17
+Release  : 18
 URL      : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.5/Imath-3.1.5.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.5/Imath-3.1.5.tar.gz
 Summary  : Python bindings for the Imath libraries
