@@ -5,7 +5,7 @@
 #
 Name     : Imath
 Version  : 3.1.5
-Release  : 23
+Release  : 24
 URL      : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.5/Imath-3.1.5.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.5/Imath-3.1.5.tar.gz
 Summary  : Python bindings for the Imath libraries
@@ -65,7 +65,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682985852
+export SOURCE_DATE_EPOCH=1685553072
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -126,7 +126,7 @@ cd ../clr-build-avx512;
 make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1682985852
+export SOURCE_DATE_EPOCH=1685553072
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Imath
 cp %{_builddir}/Imath-%{version}/LICENSE.md %{buildroot}/usr/share/package-licenses/Imath/ce40fed41edcb2473538bb84f85ff79e585760b5 || :
@@ -147,10 +147,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libImath-3_1.so
-/V3/usr/lib64/libImath.so
-/V4/usr/lib64/libImath-3_1.so
-/V4/usr/lib64/libImath.so
 /usr/include/Imath/ImathBox.h
 /usr/include/Imath/ImathBoxAlgo.h
 /usr/include/Imath/ImathColor.h
@@ -196,9 +192,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libImath-3_1.so.29
 /V3/usr/lib64/libImath-3_1.so.29.4.0
-/V4/usr/lib64/libImath-3_1.so.29
 /V4/usr/lib64/libImath-3_1.so.29.4.0
 /usr/lib64/libImath-3_1.so.29
 /usr/lib64/libImath-3_1.so.29.4.0
