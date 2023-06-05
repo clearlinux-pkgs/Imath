@@ -4,10 +4,10 @@
 # Using build pattern: cmake
 #
 Name     : Imath
-Version  : 3.1.5
-Release  : 24
-URL      : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.5/Imath-3.1.5.tar.gz
-Source0  : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.5/Imath-3.1.5.tar.gz
+Version  : 3.1.9
+Release  : 25
+URL      : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.9/Imath-3.1.9.tar.gz
+Source0  : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.9/Imath-3.1.9.tar.gz
 Summary  : Python bindings for the Imath libraries
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -23,6 +23,7 @@ BuildRequires : python3-dev
 %define debug_package %{nil}
 
 %description
+<!-- SPDX-License-Identifier: BSD-3-Clause -->
 [![License](https://img.shields.io/github/license/AcademySoftwareFoundation/Imath)](LICENSE.md)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2799/badge)](https://bestpractices.coreinfrastructure.org/projects/2799)
 [![Build Status](https://dev.azure.com/academysoftwarefoundation/Academy%20Software%20Foundation/_apis/build/status/academysoftwarefoundation.Imath)](https://dev.azure.com/academysoftwarefoundation/Academy%20Software%20Foundation/_build?definitionId=4&_a=summary)
@@ -57,15 +58,15 @@ license components for the Imath package.
 
 
 %prep
-%setup -q -n Imath-3.1.5
-cd %{_builddir}/Imath-3.1.5
+%setup -q -n Imath-3.1.9
+cd %{_builddir}/Imath-3.1.9
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685553072
+export SOURCE_DATE_EPOCH=1685987111
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -126,7 +127,7 @@ cd ../clr-build-avx512;
 make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1685553072
+export SOURCE_DATE_EPOCH=1685987111
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Imath
 cp %{_builddir}/Imath-%{version}/LICENSE.md %{buildroot}/usr/share/package-licenses/Imath/ce40fed41edcb2473538bb84f85ff79e585760b5 || :
@@ -192,10 +193,10 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libImath-3_1.so.29.4.0
-/V4/usr/lib64/libImath-3_1.so.29.4.0
+/V3/usr/lib64/libImath-3_1.so.29.8.0
+/V4/usr/lib64/libImath-3_1.so.29.8.0
 /usr/lib64/libImath-3_1.so.29
-/usr/lib64/libImath-3_1.so.29.4.0
+/usr/lib64/libImath-3_1.so.29.8.0
 
 %files license
 %defattr(0644,root,root,0755)
