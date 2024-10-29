@@ -7,7 +7,7 @@
 #
 Name     : Imath
 Version  : 3.1.11
-Release  : 27
+Release  : 28
 URL      : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.11/Imath-3.1.11.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/Imath/archive/v3.1.11/Imath-3.1.11.tar.gz
 Summary  : Imath library: vector/matrix and math operations, plus the half type.
